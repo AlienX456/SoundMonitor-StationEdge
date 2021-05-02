@@ -1,0 +1,31 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@6.12.2
+  #sonarcloud: sonarsource/sonarcloud@1.0.2
+
+jobs:
+  #sonar:
+  #  docker:
+  #    - image: 'node:latest'
+  #  steps:
+  #    - checkout
+  #    - sonarcloud/scan
+  test:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          command: |
+            pip install -r requirements.txt
+          name: Installing requirements
+      - run:
+          command: python -m unittest -v
+          name: Running tests
+
+workflows:
+  main:
+    jobs:
+     # - sonar
+      - test

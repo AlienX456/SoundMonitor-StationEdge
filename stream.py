@@ -32,11 +32,11 @@ try:
         date_time = now.strftime("%Y-%m-%dT%H:%M:%S")
         info['audio_uuid'] = filename
         info['time'] = date_time
-
+        start=datetime.now()
         inferencer_result = inferencer.run_inferencer(filename)
         Leq = nivel_ruido.calcular_db(filename)
         os.remove(filename)
-
+        print("last", str((start - datetime.now()).total_seconds()))
 
         dataToSend = {'device_info': info, 'inference_result': inferencer_result,
                       "inferencer_name": 'YAMNET', "noise_level": Leq}

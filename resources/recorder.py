@@ -24,7 +24,7 @@ class recorder:
                         rate=self.rate,
                         input=True,
                         frames_per_buffer=self.chunkSize,
-                        input_device_index=20)
+                        input_device_index=2)
 
         print("* recording")
         frames = []
